@@ -15,7 +15,7 @@ To run: Download this package  --->  CoreJava->src->day5->PasswordGenerator.java
 To run: Download this package  ---> CoreJava->src->day5->Customer.java, CustomererTest.java
 
 
-**4) Phonenumber Assignment **
+**4) Phonenumber Assignment**
   Files: PhoneNUm.java, PhoneNumTest.java
 TO run: Download this package ---> CoreJava->src->day5->PhoneNUm.java, PhoneNumTest.java
 
