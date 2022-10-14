@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+
+<import resource="classpath:jdbc.xml"/>
+
+<bean id = "tm" class = "org.springframework.jdbc.datasource.DataSourceTransactionManager" autowire="byType"></bean>
+
+<bean id = "ti" class = "org.springframework.transaction.interceptor.TransactionInterceptor" autowire="byType">
+
+<property name="transactionAttributes">
+<props>
+<!-- Required -there is TX -> became a part of it
+No Tx -> new Tx will be created 
+
+Reuires new - There is a Tx -> Suspend the Existing Tx -> Begin a new Tx execute -> resume the Older Tx
+No Tx -> new Tx will be created
+
+Supports - Be a part of it
+No Tx -> execute without a tx
+
+Not Supported - There is Tx -> Suspend Tx -> execute the method -> resume the Tx.
+No Tx - execute the method
+
+Never - There is a tx -> Throw and Exception
+No Tx - Execute
+
+Mandatory - There is a TX - execute 
+No Tx - Throw and Exception 
+
+ -->
+<prop key="*"> PROPAGATION_REQUIRED </prop>
+
+</props>
+
+</property>
+</bean>
+
+<bean id = "bikeService" class= "org.springframework.aop.framework.ProxyFactoryBean">
+<property name="interceptorNames">
+
+<list><value>ti</value></list>
+</property>
+<property name="target">
+
+<bean id="bikeService" class = "Valtechspring.tx.BikeServiceImpl">
+<property name="bikeDAO" ref = "bikeDAO"></property>
+
+</bean>
+</property>
+</bean>
+</beans>
