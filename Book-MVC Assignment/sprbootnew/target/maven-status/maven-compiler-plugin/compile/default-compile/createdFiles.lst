@@ -1,0 +1,7 @@
+com\valtech\spring\boot\repo\CarRepository.class
+com\valtech\spring\boot\controllers\CarController.class
+com\valtech\spring\boot\controllers\HelloCtlr.class
+com\valtech\spring\boot\service\CarServiceImpl.class
+com\valtech\spring\boot\SprbootnewApplication.class
+com\valtech\spring\boot\entity\Car.class
+com\valtech\spring\boot\service\CarService.class
