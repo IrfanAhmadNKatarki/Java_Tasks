@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	default-autowire="byType"
+	
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+<!-- default-autowire="Constructor"   disable set arithmetic in SimpleInterestImpl-->   
+
+
+<bean id = "logAdvice" class="Valtechspring.aop.LogAfterAdvice"></bean>
+
+<bean id ="counterAdvice" class ="Valtechspring.aop.CounterAdvise" ></bean>
+<bean id = "timerAdvice" class = "Valtechspring.aop.TimerAdvice"></bean>
+
+
+<bean id = "arithmetic" class = "org.springframework.aop.framework.ProxyFactoryBean">
+<property name="target">
+	<bean class = "Valtechspring.aop.ArithmeticImpl"></bean>
+</property>
+<property name="interceptorNames">
+<list>
+<value>timerAdvice</value>
+<value>counterAdvice</value>
+<value>logAdvice</value>
+</list>
+</property>
+<property name="optimize" value="true"></property>
+
+</bean>
+<bean id = "si" class  = "Valtechspring.aop.SimpleInterestImpl"></bean>
+
+</beans>
